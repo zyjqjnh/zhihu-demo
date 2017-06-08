@@ -1,9 +1,10 @@
 <template>
   <div class="index">
     <welcome></welcome>
+    <sidebar :isShowSidebar="isShowSidebar" @hideSidebar="toggleSidebar"></sidebar>
     <mt-loadmore :top-method="loadTop" :topDistance="40" ref="loadmore">
       <header>
-        <i class="icon iconfont icon-fenlei"></i>
+        <i class="icon iconfont icon-fenlei" @click="toggleSidebar"></i>
         <span class="hot-news">今日热文</span>
       </header>
       <swipe></swipe>
@@ -13,13 +14,27 @@
 
 <script>
   import Welcome from '../components/Welcome'
+  import Sidebar from '../components/Sidebar'
   import Swipe from '../components/Swipe'
   export default {
+    data () {
+      return {
+        isShowSidebar: false
+      }
+    },
+    created () {
+      this.isShowSidebar = false
+    },
     components: {
       'welcome': Welcome,
-      'swipe': Swipe
+      'swipe': Swipe,
+      'sidebar': Sidebar
     },
     methods: {
+      // 切换侧边栏显示状态
+      toggleSidebar () {
+        this.isShowSidebar = !this.isShowSidebar
+      },
       loadTop () {
         this.$refs.loadmore.onTopLoaded()
       }
