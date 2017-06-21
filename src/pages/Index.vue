@@ -8,6 +8,7 @@
         <span class="hot-news">今日热文</span>
       </header>
       <swipe></swipe>
+      <news-list ref="newsList"></news-list>
     </mt-loadmore>
   </div>
 </template>
@@ -16,6 +17,7 @@
   import Welcome from '../components/Welcome'
   import Sidebar from '../components/Sidebar'
   import Swipe from '../components/Swipe'
+  import NewsList from '../components/NewsList'
   export default {
     data () {
       return {
@@ -28,7 +30,8 @@
     components: {
       'welcome': Welcome,
       'swipe': Swipe,
-      'sidebar': Sidebar
+      'sidebar': Sidebar,
+      'newsList': NewsList
     },
     methods: {
       // 切换侧边栏显示状态
@@ -36,6 +39,7 @@
         this.isShowSidebar = !this.isShowSidebar
       },
       loadTop () {
+        this.$refs.newsList.$emit('refresh')
         this.$refs.loadmore.onTopLoaded()
       }
     }
