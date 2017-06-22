@@ -1,7 +1,7 @@
 <template>
   <div class="news-list">
     <ul class="list" ref="newsList" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="false" infinite-scroll-distance="10">
-      <li class="list-item" v-for="story in this.$store.state.stories" :key="story.id">
+      <li class="list-item" v-for="story in this.$store.state.stories" :key="story.id" @click="viewDetail(story.id)">
         <span class="item-title">{{story.title}}</span>
         <div class="image-wrapper">
           <img class="item-image" v-lazy.newsList="attachImageUrl(story.images[0])" :alt="story.title">
@@ -25,6 +25,7 @@
     created () {
       if (this.$store.state.isFirstLoad) {
         this.fetchData()
+        this.$store.dispatch('changeLoadState')
       }
 
       this.initDate()
@@ -34,6 +35,11 @@
       })
     },
     methods: {
+      viewDetail (id) {
+        this.$store.dispatch('changeCurrentNewsId', id)
+        this.$store.dispatch('changeNewsType', 0)
+        this.$router.push({ name: 'newsDetail', params: { id: id } })
+      },
       fetchData () {
         axios.get('api/news/latest')
           .then(response => {
