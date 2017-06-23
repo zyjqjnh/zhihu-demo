@@ -19,5 +19,9 @@ export default {
 
   changeNewsType: ({ commit }, type) => {
     commit(types.CHANGE_NEWS_TYPE, type)
+  },
+
+  changeCurrentThemeId: ({ commit }, id) => {
+    commit(types.CHANGE_CURRENT_THEME_ID, id)
   }
 }

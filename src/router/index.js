@@ -4,6 +4,7 @@ import Index from '../pages/Index'
 import NewsDetail from '../pages/NewsDetail'
 import Common from '../pages/Comment'
 import WriteComment from '../pages/WriteComment'
+import ThemeDetail from '../pages/ThemeDetail'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/writeComment/:id',
       name: 'writeComment',
       component: WriteComment
+    },
+    {
+      path: '/themeDetail/:id',
+      name: 'themeDetail',
+      component: ThemeDetail
     }
   ]
 })

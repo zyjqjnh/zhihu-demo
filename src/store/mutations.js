@@ -21,5 +21,9 @@ export default {
 
   [types.CHANGE_NEWS_TYPE] (state, type) {
     state.newsType = type
+  },
+
+  [types.CHANGE_CURRENT_THEME_ID] (state, id) {
+    state.currentThemeId = id
   }
 }

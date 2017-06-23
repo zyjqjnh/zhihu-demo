@@ -53,10 +53,13 @@
         let type = this.$store.state.newsType
         if (type === 0) {
           this.$router.push({name: 'index'})
+        } else if (type === 1) {
+          let currentThemeId = this.$store.state.currentThemeId
+          this.$router.push({ name: 'themeDetail', params: { id: currentThemeId } })
         }
       },
       goNext () {
-        this.$router.push({name: 'newsDetail', params: {id: this.$store.state.nextId}})
+        this.$router.push({ name: 'newsDetail', params: { id: this.$store.state.nextId } })
       },
       thumbUp () {
         if (!this.isDianzan) {

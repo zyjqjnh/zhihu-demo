@@ -21,8 +21,8 @@
       </div>
       <div class="menu-wrapper" ref="menuWrapper">
         <ul>
-          <li class="menu-item" v-for="item in data">
-            <i class="icon iconfont icon-shouyeshouye" v-if="item === -1"></i>
+          <li class="menu-item" v-for="item in data" @click="themeDetail(item.id)">
+            <i class="icon iconfont icon-shouyeshouye" v-if="item.id === -1"></i>
             {{ item.name }}
             <i class="icon iconfont icon-more"></i>
           </li>
@@ -77,6 +77,14 @@
           .catch(error => {
             console.log(error)
           })
+      },
+      themeDetail (id) {
+        if (id === -1) {
+          this.hideSidebar()
+        } else {
+          this.$store.dispatch('changeCurrentThemeId', id)
+          this.$router.push({ name: 'themeDetail', params: {id: id} })
+        }
       }
     },
     created () {
