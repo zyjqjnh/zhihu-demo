@@ -14,7 +14,7 @@
       <li class="menu-item">
         <i class="icon iconfont icon-fenxiang"></i>
       </li>
-      <li class="menu-item">
+      <li class="menu-item" @click="showComment">
         <i class="icon iconfont icon-pinglun"></i>
         <span class="comments-number">{{ this.$store.state.comments }}</span>
       </li>
@@ -69,6 +69,9 @@
       reloadId () {
         this.$emit('reloadId')
         this.fetchStoryExtra()
+      },
+      showComment () {
+        this.$router.push({name: 'comment', params: {id: this.$store.state.id}})
       }
     }
   }
