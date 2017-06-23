@@ -5,7 +5,7 @@
     <short-comment></short-comment>
     <div class="foot">
       <i class="icon iconfont icon-back" @click="backToDetail"></i>
-      <i class="icon iconfont icon-bianxie">写评论</i>
+      <i class="icon iconfont icon-bianxie" @click="writeComment">写评论</i>
     </div>
   </div>
 </template>
@@ -21,6 +21,9 @@
     methods: {
       backToDetail () {
         this.$router.back(-1)
+      },
+      writeComment () {
+        this.$router.push({ name: 'writeComment', params: {id: this.$store.state.id} })
       }
     }
   }
