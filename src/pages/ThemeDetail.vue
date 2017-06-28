@@ -6,7 +6,7 @@
       <span class="title">{{ data.name }}</span>
       <i class="icon iconfont" :class="[isFocus ? 'icon-jian' : 'icon-jia']" @click="toggleThemeFocus"></i>
     </header>
-    <div class="editors">
+    <div class="editors" @click="showEditors">
       <span class="text">主编</span>
       <img v-for="item in data.editors" v-lazy="attachImageUrl(item.avatar)" alt="">
       <i class="icon iconfont icon-more"></i>
@@ -61,6 +61,9 @@
         this.$store.dispatch('changeCurrentNewsId', id)
         this.$store.dispatch('changeNewsType', 1)
         this.$router.push({ name: 'newsDetail', params: {id: id} })
+      },
+      showEditors () {
+        this.$router.push({ name: 'editorsList', params: { id: this.id } })
       }
     }
   }
